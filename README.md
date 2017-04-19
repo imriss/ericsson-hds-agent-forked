@@ -71,7 +71,11 @@ Installation from Source Code
    User can download the Ericsson HDS Agent source code using `go` command
 
    ```
-   cd $HOME/go/src
+   mkdir -p $HOME/go/src
+
+   export GOPATH=$HOME/go
+
+   cd $GOPATH/src
 
    go get github.com/Ericsson/ericsson-hds-agent
    ```
@@ -80,7 +84,9 @@ Installation from Source Code
 
    Execute the following set of commands to build HDS Agent binary:
    ```
-   cd github.com/Ericsson/ericsson-hds-agent/agent/apps/ericsson-hds-agent
+   cd $GOPATH/src/github.com/Ericsson/ericsson-hds-agent/agent/apps/ericsson-hds-agent
+
+   go get ./...
 
    go build
    ```
