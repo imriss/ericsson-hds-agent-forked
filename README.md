@@ -11,6 +11,11 @@ Ericsson HDS (Hyperscale Datacenter Systems) Agent is a Linux based program desi
    * LINUX/x86_64
    * LINUX/ARM64
 
+### Recommended System Tools  
+The agent uses various Linux commands to collect inventory data from the host machine.  Please refer to the documentation in docs folder for more details.
+
+
+
 Getting Started
 ---------------
 
@@ -49,7 +54,7 @@ Installation from Binary Distribution
    ```
    sudo ./ericsson-hds-agent  -frequency=15 -destination=tcp:<ip_addr>:9090
    ```
-   (ip_addr = ip address of the storage server.  get more detail in examples folder.)
+   (ip_addr = ip address of the storage server.)
 
    The above command collects metrics at an interval of 15 seconds and sends the data to a storage server running on port 9090. A [sample storage server](./examples/simple-storage-server.py) has been provided to ingest the data.
 
