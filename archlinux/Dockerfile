@@ -33,12 +33,9 @@ RUN cd /home/docker/sandground \
   && cd /home/docker/sandground/go/src/github.com/ericsson/ericsson-hds-agent/agent/apps/ericsson-hds-agent \
   && /bin/bash -c "ls . -la |sort -h" \
   && go get ./... \
-  && go build
-  
-RUN cd github.com/Ericsson/ericsson-hds-agent/agent/apps/ericsson-hds-agent \
   && go build \
-  && /bin/bash -c "ls . -la |sort -h"
-
+  && /bin/bash -c "ls . -la |sort -h"   
+  
 RUN /bin/bash -c "comm -23 <(pacman -Qq) <(cat <(pactree -u go |sort) <(pactree -u mpfr |sort) <(pactree -u pacman |sort) <(pactree -u sudo |sort) <(pacman -Qgq base | sort) |sort -u) | xargs pacman -Rdd --noconfirm" \
 RUN pacman -Scc --noconfirm \
   &&  rm /var/cache/pacman/pkg/* \
