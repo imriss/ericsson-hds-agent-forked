@@ -25,8 +25,8 @@ RUN add-aur docker
 # RUN su docker -c 'pacaur -S --needed --noprogressbar --noedit --noconfirm python python-pip'
 
 RUN cd /usr/lib/go/src/ \
-  && git clone https://github.com/NodePrime/ericsson-hds-agent-forked \
-  && cd ericsson-hds-agent-forked/agent/apps/ericsson-hds-agent \
+  && go get github.com/Ericsson/ericsson-hds-agent \
+  && cd github.com/Ericsson/ericsson-hds-agent/agent/apps/ericsson-hds-agent \
   && go build \
   && /bin/bash -c "ls . -la |sort -h"
 
