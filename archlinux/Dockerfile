@@ -29,19 +29,18 @@ RUN cd /home/docker/sandground \
   && export GOPATH=/home/docker/sandground/go \
   && cd /home/docker/sandground/go/src/github.com/ericsson \
   && git clone https://github.com/Ericsson/ericsson-hds-agent \
-  && /bin/bash -c "ls . -la |sort -h" \
   && cd /home/docker/sandground/go/src/github.com/ericsson/ericsson-hds-agent/agent/apps/ericsson-hds-agent \
-  && /bin/bash -c "ls . -la |sort -h" \
   && go get ./... \
   && go build \
-  && /bin/bash -c "ls . -la |sort -h"   
+  && cp ericsson-hds-agent /usr/local/bin
+
   
 RUN /bin/bash -c "comm -23 <(pacman -Qq) <(cat <(pactree -u go |sort) <(pactree -u mpfr |sort) <(pactree -u pacman |sort) <(pactree -u sudo |sort) <(pacman -Qgq base | sort) |sort -u) | xargs pacman -Rdd --noconfirm" \
 RUN pacman -Scc --noconfirm \
   &&  rm /var/cache/pacman/pkg/* \
   && paccache -rf 
 
-RUN /bin/bash -c "du /usr -hd 1 |sort -h"
+# RUN /bin/bash -c "du /usr -hd 1 |sort -h"
 # RUN /bin/bash -c "ls /usr/lib -la |sort -h"
 
 RUN rm -rd /home/docker/sandground
