@@ -25,7 +25,7 @@ RUN add-aur docker
 # RUN su docker -c 'pacaur -S --needed --noprogressbar --noedit --noconfirm python python-pip'
 
 RUN cd /usr/lib/go/src \
-  && export GOPATH="/usr/lib/go/src/" \
+  && export GOPATH="/usr/lib/go/" \
   && go get github.com/Ericsson/ericsson-hds-agent \
   && cd github.com/Ericsson/ericsson-hds-agent/agent/apps/ericsson-hds-agent \
   && go build \
