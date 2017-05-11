@@ -22,7 +22,7 @@ RUN chmod u+x /usr/sbin/aur.sh
 RUN chmod u+x /usr/sbin/add-aur
 RUN add-aur docker
 
-# RUN su docker -c 'pacaur -S --needed --noprogressbar --noedit --noconfirm python python-pip'
+RUN su docker -c 'pacaur -S --needed --noprogressbar --noedit --noconfirm pciutils mcelog edac-utils bmc-info ipmitool smartmontools usbutils dmidecode'
 
 RUN cd /home/docker/sandground \
   && mkdir -p go/src/github.com/ericsson \
@@ -35,8 +35,9 @@ RUN cd /home/docker/sandground \
   && cp ericsson-hds-agent /usr/local/bin
 
   
-RUN /bin/bash -c "comm -23 <(pacman -Qq) <(cat <(pactree -u go |sort) <(pactree -u mpfr |sort) <(pactree -u pacman |sort) <(pactree -u sudo |sort) <(pacman -Qgq base | sort) |sort -u) | xargs pacman -Rdd --noconfirm" \
-RUN pacman -Scc --noconfirm \
+RUN savelist=("go" "mpfr" "pacman" "sudo" "base" "pciutils" "mcelog" "edac-utils" "ipmitool" "smartmontools" "usbutils" "dmidecode") \
+  && /bin/bash -c "comm -23 <(pacman -Qq) <((for i in "${savelist[@]}"; do pactree -ul "$i"; done) | sort -u) | xargs pacman -Rdd --noconfirm" \
+  && pacman -Scc --noconfirm \
   &&  rm /var/cache/pacman/pkg/* \
   && paccache -rf 
 
