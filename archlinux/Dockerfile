@@ -25,11 +25,11 @@ RUN add-aur docker
 # RUN su docker -c 'pacaur -S --needed --noprogressbar --noedit --noconfirm python python-pip'
 
 RUN cd /home/docker/sandground \
-  && mkdir go \
-  && cd go \
-  && export GOPATH="/home/docker/sandground/go/" \
+  && mkdir -p go/src \
+  && export GOPATH=/home/docker/sandground/go \
+  && cd /home/docker/sandground/go/src \
   && /bin/bash -c "ls . -la |sort -h" \
-  && GOPATH="/home/docker/sandground/go/" go get github.com/ericsson/ericsson-hds-agent \
+  && GOPATH=/home/docker/sandground/go go get github.com/ericsson/ericsson-hds-agent \
   && /bin/bash -c "ls . -la |sort -h" 
   
 RUN cd github.com/Ericsson/ericsson-hds-agent/agent/apps/ericsson-hds-agent \
