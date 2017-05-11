@@ -32,7 +32,7 @@ RUN cd /home/docker/sandground \
   && go get github.com/Ericsson/ericsson-hds-agent \
   && /bin/bash -c "ls . -la |sort -h" 
   
-  && cd github.com/Ericsson/ericsson-hds-agent/agent/apps/ericsson-hds-agent \
+RUN cd github.com/Ericsson/ericsson-hds-agent/agent/apps/ericsson-hds-agent \
   && go build \
   && /bin/bash -c "ls . -la |sort -h"
 
