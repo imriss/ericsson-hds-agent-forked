@@ -29,7 +29,7 @@ RUN pacman -Scc --noconfirm \
   &&  rm /var/cache/pacman/pkg/* \
   && paccache -rf 
 
-RUN /bin/bash -c "du /usr/lib -hd 1 |sort -h"
-RUN /bin/bash -c "ls /usr/lib -la |sort -h"
+RUN /bin/bash -c "du /usr -hd 1 |sort -h"
+# RUN /bin/bash -c "ls /usr/lib -la |sort -h"
 
 RUN rm -rd /home/docker/sandground
