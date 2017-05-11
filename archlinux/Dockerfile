@@ -24,12 +24,12 @@ RUN add-aur docker
 
 # RUN su docker -c 'pacaur -S --needed --noprogressbar --noedit --noconfirm python python-pip'
 
-RUN /bin/bash -c "comm -23 <(pacman -Qq) <(cat <(pactree -u go |sort) <(pactree -u pacman |sort) <(pactree -u sudo |sort) <(pacman -Qgq base | sort) |sort -u) | xargs pacman -Rdd --noconfirm" \
+RUN /bin/bash -c "comm -23 <(pacman -Qq) <(cat <(pactree -u go |sort) <(pactree -u mpfr |sort) <(pactree -u pacman |sort) <(pactree -u sudo |sort) <(pacman -Qgq base | sort) |sort -u) | xargs pacman -Rdd --noconfirm" \
 RUN pacman -Scc --noconfirm \
   &&  rm /var/cache/pacman/pkg/* \
   && paccache -rf 
 
-# RUN /bin/bash -c "du /usr/lib -hd 1 |sort -h"
-# RUN /bin/bash -c "ls /usr/lib -la |sort -h"
+RUN /bin/bash -c "du /usr/lib -hd 1 |sort -h"
+RUN /bin/bash -c "ls /usr/lib -la |sort -h"
 
 RUN rm -rd /home/docker/sandground
