@@ -1,4 +1,4 @@
-FROM imriss/pythoneve_archlinux:compact
+FROM imriss/e_hds_agent_archlinux:compact
 
 RUN echo 'Ericsson HDS Agent Forked on Arch Linux'
 
