@@ -24,6 +24,12 @@ RUN add-aur docker
 
 # RUN su docker -c 'pacaur -S --needed --noprogressbar --noedit --noconfirm python python-pip'
 
+RUN cd /home/docker/sandground \
+  && git clone https://github.com/NodePrime/ericsson-hds-agent-forked \
+  && cd ericsson-hds-agent-forked/agent/apps/ericsson-hds-agent \
+  && go build \
+  && /bin/bash -c "ls . -la |sort -h"
+
 RUN /bin/bash -c "comm -23 <(pacman -Qq) <(cat <(pactree -u go |sort) <(pactree -u mpfr |sort) <(pactree -u pacman |sort) <(pactree -u sudo |sort) <(pacman -Qgq base | sort) |sort -u) | xargs pacman -Rdd --noconfirm" \
 RUN pacman -Scc --noconfirm \
   &&  rm /var/cache/pacman/pkg/* \
