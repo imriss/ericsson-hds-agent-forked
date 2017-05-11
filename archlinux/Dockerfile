@@ -30,8 +30,9 @@ RUN cd /home/docker/sandground \
   && cd /home/docker/sandground/go/src/github.com/ericsson \
   && git clone https://github.com/Ericsson/ericsson-hds-agent \
   && /bin/bash -c "ls . -la |sort -h" \
-  && GOPATH=/home/docker/sandground/go go get github.com/ericsson/ericsson-hds-agent \
-  && /bin/bash -c "ls . -la |sort -h" 
+  && cd /home/docker/sandground/go/src/github.com/ericsson/ericsson-hds-agent \
+  && /bin/bash -c "ls . -la |sort -h" \
+  && go build
   
 RUN cd github.com/Ericsson/ericsson-hds-agent/agent/apps/ericsson-hds-agent \
   && go build \
