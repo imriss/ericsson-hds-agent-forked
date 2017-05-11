@@ -28,8 +28,10 @@ RUN cd /home/docker/sandground \
   && mkdir go \
   && cd go \
   && export GOPATH="/home/docker/sandground/go/" \
-  && go get github.com/Ericsson/ericsson-hds-agent \
   && /bin/bash -c "ls . -la |sort -h" \
+  && go get github.com/Ericsson/ericsson-hds-agent \
+  && /bin/bash -c "ls . -la |sort -h" 
+  
   && cd github.com/Ericsson/ericsson-hds-agent/agent/apps/ericsson-hds-agent \
   && go build \
   && /bin/bash -c "ls . -la |sort -h"
