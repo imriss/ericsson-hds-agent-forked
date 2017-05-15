@@ -36,7 +36,7 @@ RUN cd /home/docker/sandground \
 
 # savelist=("go" "mpfr" "pacman" "pacaur" "grep" "sudo" "nano" "vi" "sed" "gettext" "gawk" "pciutils" "mcelog" "edac-utils" "bmc" "ipmitool" "smartmontools" "usbutils" "dmidecode") 
 RUN /bin/bash -c 'pacman -Rdd --noconfirm $(comm -23 <(pacman -Qq | sort -u) <(cat <((for i in "go" "mpfr" "pacman" \
-  "pacaur" "grep" "nano" "vi" "sed" "gettext" "strip" "gzip" "binutils" "autoreconf" \
+  "pacaur" "grep" "nano" "vi" "sed" "gettext" "strip" "gzip" "binutils" "autoconf" \
   "sudo" "gawk" "pciutils" "mcelog" "edac-utils" "bmc" "ipmitool" "smartmontools" "usbutils" "dmidecode"; do pactree -ul "$i"; done) | sort -u) |sort -u))' \ 
   && pacman -Scc --noconfirm \
   &&  rm /var/cache/pacman/pkg/* \
