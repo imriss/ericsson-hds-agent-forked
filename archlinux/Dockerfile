@@ -34,8 +34,10 @@ RUN cd /home/docker/sandground \
   && go build \
   && cp ericsson-hds-agent /usr/local/bin
 
-# savelist=("go" "mpfr" "pacman" "pacaur" "grep" "sudo" "nano" "vi" "sed" "gawk" "pciutils" "mcelog" "edac-utils" "bmc" "ipmitool" "smartmontools" "usbutils" "dmidecode") 
-RUN /bin/bash -c 'pacman -Rdd --noconfirm $(comm -23 <(pacman -Qq | sort -u) <(cat <((for i in "go" "mpfr" "pacman" "pacaur" "grep" "sudo" "nano" "vi" "sed" "gawk" "pciutils" "mcelog" "edac-utils" "bmc" "ipmitool" "smartmontools" "usbutils" "dmidecode"; do pactree -ul "$i"; done) | sort -u) |sort -u))' \ 
+# savelist=("go" "mpfr" "pacman" "pacaur" "grep" "sudo" "nano" "vi" "sed" "gettext" "gawk" "pciutils" "mcelog" "edac-utils" "bmc" "ipmitool" "smartmontools" "usbutils" "dmidecode") 
+RUN /bin/bash -c 'pacman -Rdd --noconfirm $(comm -23 <(pacman -Qq | sort -u) <(cat <((for i in "go" "mpfr" "pacman" \
+  "pacaur" "grep" "sudo" "nano" "vi" "sed" "gettext" \
+  "gawk" "pciutils" "mcelog" "edac-utils" "bmc" "ipmitool" "smartmontools" "usbutils" "dmidecode"; do pactree -ul "$i"; done) | sort -u) |sort -u))' \ 
   && pacman -Scc --noconfirm \
   &&  rm /var/cache/pacman/pkg/* \
   && paccache -rf 
